@@ -106,7 +106,17 @@ def computer_move():
         CheckWin()
         global turn
         turn = 0  # 讓玩家接著下棋
+# 電腦的回合:
+# 迴圈遍歷格子（i = 0 到 8）:
+# 如果某個格子是空的 (""):
+# 電腦下棋（board[i] = "X"）。
+# 呼叫 minimax(board, False)，進入玩家的回合。
 
+# 玩家的回合:
+# 迴圈遍歷格子（i = 0 到 8）:
+# 如果某個格子是空的 (""):
+# 玩家下棋（board[i] = "O"）。
+# 呼叫 minimax(board, True)，進入電腦的回合。
 def minimax(board, is_maximizing):
     # 終止條件
     winner = check_winner(board)
