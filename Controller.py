@@ -133,6 +133,8 @@ def minimax(board, is_maximizing):
             if board[i] == "":
                 board[i] = "X"  # 電腦的棋子
                 score = minimax(board, False)
+                #是score = minimax(board, False)：這行代碼會呼叫 minimax 函數，傳入更新後的棋盤狀態和 False（表示這次是玩家的回合）。
+                # minimax 函數會根據當前棋盤狀態進行遞迴計算，評估該狀態的分數，返回給 score 變數。
                 board[i] = ""  # 回復
                 best_score = max(score, best_score)
         return best_score
