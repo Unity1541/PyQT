@@ -124,7 +124,7 @@ def minimax(board, is_maximizing):
         return 1
     elif winner == 'O':  # 玩家贏玩家讓電腦得分最小的棋局
         return -1
-    elif "" not in board:  # 平局
+    elif "" not in board:  #表示遊戲平局。當棋盤滿了但沒有獲勝者時，minimax 函數會返回 0。
         return 0
 # 終止條件滿足時：
 # 如果這三個條件中的任意一個成立，函數立即返回值給呼叫者。
@@ -143,10 +143,17 @@ def minimax(board, is_maximizing):
                 board[i] = "X"  # 電腦的棋子"X"  # 電腦下在位置 3
                 score = minimax(board, False)
                 #是score = minimax(board, False)：這行代碼會呼叫 minimax 函數，傳入更新後的棋盤狀態和 False（表示這次是玩家的回合）。
-                # minimax 函數會根據當前棋盤狀態進行遞迴計算，評估該狀態的分數，返回給 score 變數。
+                # minimax 函數會根據當前棋盤狀態進行遞迴計算，評估該狀態的分數，返回給 score 變數。接著執行下一步的""和評估分數
                 board[i] = ""  # 撤銷這一步棋，準備嘗試下一個位置
                 best_score = max(score, best_score)
         return best_score
+    # 呼叫 minimax：當電腦下棋並執行 score = minimax(board, False) 時，minimax 函數會被遞迴調用。
+    # 這個調用會根據當前的棋盤狀態進行評估，並最終返回一個分數（score）。
+    # 返回分數後的邏輯：一旦 minimax 完成計算並返回分數，控制會回到原來的函數（即電腦的回合），並繼續執行下一行程式碼。
+    # 這一行是 board[i] = ""，表示撤銷剛剛下的棋步。
+    # 更新 best_score：然後，程式會執行 best_score = max(score, best_score)。
+    # 這裡的 max 函數會比較當前的分數（score）和之前的最佳分數（best_score），並將較大的那個值更新到 best_score。
+    
     else:  # 玩家回合
         best_score = float('inf')
         for i in range(9):
