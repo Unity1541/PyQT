@@ -126,6 +126,16 @@ def minimax(board, is_maximizing):
         return -1
     elif "" not in board:  # 平局
         return 0
+# 終止條件滿足時：
+# 如果這三個條件中的任意一個成立，函數立即返回值給呼叫者。
+# 此時，minimax 函數會直接結束，後面的遞迴邏輯不會執行。    
+# 在 minimax 函數中，當程式執行到 elif "" not in board: 並返回 0 時，表示棋盤已經滿了且沒有贏家（平局），
+# 此時函數會直接返回 0。
+# 因此，如果 return 0 已經被執行，則後面的 if is_maximizing 這一段代碼不會被執行。
+# 這是因為一旦函數內部執行了 return，它會立即結束該函數的執行，並將值返回給呼叫它的上一層函數。
+# 換句話說：
+# 如果是平局，minimax 會直接返回 0，並且後面的 if is_maximizing 不會執行。
+# 只有當棋盤還沒滿、且沒有出現贏家或平局時，if is_maximizing 和 else 的代碼才會繼續執    
 
     if is_maximizing:  # 電腦的回合
         best_score = -float('inf')
