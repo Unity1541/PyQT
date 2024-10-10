@@ -94,7 +94,7 @@ def computer_move():
         if board[i] == "":  # 空的格子
             board[i] = "X"  # 模擬電腦下棋
             score = minimax(board, False)  # 玩家下一步
-            board[i] = ""  # 回復
+            #board[i] = ""  # 回復
             if score > best_score:
                 best_score = score
                 move = i
@@ -136,16 +136,15 @@ def minimax(board, is_maximizing):
 # 換句話說：
 # 如果是平局，minimax 會直接返回 0，並且後面的 if is_maximizing 不會執行。
 # 只有當棋盤還沒滿、且沒有出現贏家或平局時，if is_maximizing 和 else 的代碼才會繼續執    
-
     if is_maximizing:  # 電腦的回合
         best_score = -float('inf')
         for i in range(9):
             if board[i] == "":
-                board[i] = "X"  # 電腦的棋子
+                board[i] = "X"  # 電腦的棋子"X"  # 電腦下在位置 3
                 score = minimax(board, False)
                 #是score = minimax(board, False)：這行代碼會呼叫 minimax 函數，傳入更新後的棋盤狀態和 False（表示這次是玩家的回合）。
                 # minimax 函數會根據當前棋盤狀態進行遞迴計算，評估該狀態的分數，返回給 score 變數。
-                board[i] = ""  # 回復
+                board[i] = ""  # 撤銷這一步棋，準備嘗試下一個位置
                 best_score = max(score, best_score)
         return best_score
     else:  # 玩家回合
